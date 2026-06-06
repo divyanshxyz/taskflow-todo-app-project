@@ -83,7 +83,7 @@ npm run deploy
 │   │   ├── variables.css     # CSS variable tokens (colors, shadows, margins)
 │   │   ├── layout.css        # Core layout containers (Sidebar & Main content)
 │   │   └── components.css    # Layout components, modals, form inputs
-│   ├── svgs/                 # Static SVG icons
+│   ├── images/               # Required images
 │   ├── UIController.js       # Handles DOM manipulation, rendering, and UI actions
 │   ├── appController.js      # Coordinates application state, storage, and callbacks
 │   ├── todoCore.js           # Core class logic for Todos
