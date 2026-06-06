@@ -175,6 +175,7 @@
 }
 
 input[type="text"],
+input:not([type]),
 input[type="date"],
 select {
     width: 100%;
@@ -189,6 +190,7 @@ select {
 }
 
 input[type="text"]:focus,
+input:not([type]):focus,
 input[type="date"]:focus,
 select:focus {
     border-color: var(--primary);
