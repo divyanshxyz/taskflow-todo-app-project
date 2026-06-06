@@ -2,7 +2,7 @@
 
 TaskFlow is a modern, elegant, and professional Todo List web application built with vanilla JavaScript, modern CSS3 layout systems, and Webpack. It features a complete project structure, dynamic task lists, responsive modal editors, relative date formatting, priority tagging, and state persistence via local storage.
 
-![TaskFlow Interface Preview](https://github.com/divyanshxyz/taskflow-todo-app-project/raw/main/dist/preview.png) *(Update with your repository preview image)*
+![TaskFlow Interface Preview](./src/images/page-preview.png)
 
 ## ✨ Features
 
