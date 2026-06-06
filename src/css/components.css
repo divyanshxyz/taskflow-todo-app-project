@@ -1,6 +1,394 @@
-/* For individual pieces: buttons, forms, todo-cards, the modal */
+/* Modern & Elegant Component Styles */
 
-/* components.css blueprint */
+/* =========================================
+   Sidebar Brand & Brand Elements
+   ========================================= */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-brand h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-sidebar);
+}
+
+.sidebar-brand svg {
+    color: var(--primary);
+}
+
+.sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* =========================================
+   Sidebar Project Rows & Controls
+   ========================================= */
+#project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.project-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--text-sidebar-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.project-div:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--text-sidebar);
+}
+
+.active-project-div {
+    background-color: var(--primary-light);
+    color: var(--primary) !important;
+    font-weight: 600;
+}
+
+.project-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Project Buttons & SVGs in Sidebar */
+.project-div div[style*="display: flex"] {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.project-edit-btn,
+.project-delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: all var(--transition-fast);
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-sidebar-muted);
+}
+
+.project-div:hover .project-edit-btn,
+.project-div:hover .project-delete-btn {
+    opacity: 0.6;
+}
+
+.project-edit-btn:hover,
+.project-delete-btn:hover {
+    opacity: 1 !important;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-sidebar) !important;
+}
+
+/* =========================================
+   Add Project Form in Sidebar
+   ========================================= */
+#add-project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#new-project-name {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-sidebar);
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+}
+
+#new-project-name:focus {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary);
+}
+
+#add-project-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color var(--transition-fast);
+}
+
+#add-project-form button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* =========================================
+   Form Controls, Inputs, and Labels
+   ========================================= */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.form-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.form-group.col-span-2 {
+    grid-column: span 2;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* =========================================
+   Add Todo Form Section
+   ========================================= */
+.add-todo-section {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Toggle/Checkbox Styling */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.toggle-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+#add-todo-form-submit-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+#add-todo-form-submit-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+#add-todo-form-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   Todo Items List & Cards
+   ========================================= */
+#todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.todo-card {
+    background-color: var(--bg-card);
+    padding: 1.25rem 1.75rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.todo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--text-muted);
+}
+
+.todo-card-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.todo-card-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.todo-card-duedate {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: var(--bg-primary);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+}
+
+/* Todo Card Action Buttons */
+.todo-edit-btn,
+.todo-delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all var(--transition-fast);
+    padding: 0.35rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+}
+
+.todo-card:hover .todo-edit-btn,
+.todo-card:hover .todo-delete-btn {
+    opacity: 0.7;
+}
+
+.todo-edit-btn:hover {
+    opacity: 1 !important;
+    background-color: var(--primary-light);
+    color: var(--primary) !important;
+    transform: scale(1.1);
+}
+
+.todo-delete-btn:hover {
+    opacity: 1 !important;
+    background-color: rgba(239, 68, 68, 0.08);
+    color: var(--priority-high) !important;
+    transform: scale(1.1);
+}
+
+.todo-edit-btn svg,
+.todo-delete-btn svg,
+.project-edit-btn svg,
+.project-delete-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    display: block;
+}
+
+/* Priority Card Left Borders */
+.todo-card.high-color {
+    border-left: 5px solid var(--priority-high);
+}
+
+.todo-card.medium-color {
+    border-left: 5px solid var(--priority-medium);
+}
+
+.todo-card.low-color {
+    border-left: 5px solid var(--priority-low);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 4.5rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--border-color);
+    margin-top: 1rem;
+}
+
+/* =========================================
+   Modals & Overlay Backdrop
+   ========================================= */
 #edit-todo-modal,
 #edit-project-modal {
     position: fixed;
@@ -8,228 +396,143 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Dim the background */
-
-    /* Flexbox to center the form in the middle of the screen */
+    background-color: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
+    transition: all var(--transition-normal);
 }
 
 .hide-edit-modal {
     display: none !important;
 }
 
-/* =========================================
-   Sidebar & Project Buttons
-   ========================================= */
-
-/* The project list container should stack its children */
-#project-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    /* Space between buttons */
-}
-
-/* Base styling for all project buttons */
-.project-button {
-    background: transparent;
-    border: none;
-    color: var(--text-sidebar);
-    text-align: left;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
-}
-
-/* Interactive hover state */
-.project-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* The active state (toggled by your UIController) */
-.active-project-button {
-    background-color: rgba(255, 255, 255, 0.2);
-    font-weight: 600;
-    /* Optional: Add a subtle border to make it pop */
-    border-left: 4px solid var(--priority-medium);
-}
-
-#add-project-form {
-    margin-top: auto;
-}
-
-#new-project-name {
+/* Modal Inner Card Structure */
+.modal-card {
+    background-color: var(--bg-card);
     width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border-radius: 4px;
-    border: none;
+    max-width: 500px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#add-project-form button {
-    width: 100%;
-    padding: 0.5rem;
-    background: var(--priority-medium);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
+.modal-card.max-w-sm {
+    max-width: 400px;
 }
 
-/* =========================================
-   Add Todo Form
-   ========================================= */
-
-#add-todo-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    margin-bottom: 3rem;
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
-#add-todo-form input {
-    padding: 0.5rem;
-    border: 1px solid #d4d4d8;
-    border-radius: 4px;
-    font-size: 0.9rem;
-}
-
-#add-todo-form button:hover {
-    opacity: 0.9;
-}
-
-/* =========================================
-   Todo Cards
-   ========================================= */
-
-
-#todo-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.todo-card {
-    background-color: #ffffff;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+.modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-    border-left: 5px solid #ccc;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
 }
 
-.todo-card-title {
-    font-weight: 600;
-    font-size: 1.1rem;
+.modal-header h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
-.todo-card-duedate {
-    font-size: 0.9rem;
-    color: #71717a;
-}
-
-/* Container for the date and action buttons */
-.todo-card-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    /* Space between the date and the buttons */
-}
-
-/* Style the action buttons to look clean and modern */
-.todo-edit-btn,
-.todo-delete-btn,
-.project-edit-btn,
-.project-delete-btn {
+.modal-close-x {
     background: transparent;
     border: none;
-    color: inherit;
+    font-size: 1.75rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--text-secondary);
     cursor: pointer;
-    font-size: 1.2rem;
-    opacity: 0.5;
-    /* Dim them slightly by default */
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: color var(--transition-fast);
+    padding: 0.25rem;
+}
+
+.modal-close-x:hover {
+    color: var(--text-primary);
+}
+
+/* Modal Form Layout */
+#edit-todo-form,
+#edit-project-form {
+    padding: 2rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.todo-edit-btn:hover,
-.todo-delete-btn:hover,
-.project-edit-btn:hover,
-.project-delete-btn:hover {
-    opacity: 1;
-    /* Brighten on hover */
-    transform: scale(1.1);
-    /* Slight pop effect */
-}
-
-.todo-edit-btn svg,
-.todo-delete-btn svg,
-.project-edit-btn svg,
-.project-delete-btn svg {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
-}
-
-/* Update the Sidebar Project Div */
-.project-div {
+.modal-form-grid {
     display: flex;
-    justify-content: space-between;
-    /* Pushes name to left, trash to right */
-    align-items: center;
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group-half {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+/* Button Classes */
+.btn-primary {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    color: var(--text-sidebar);
-}
-
-.project-div:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.active-project-div {
-    background-color: rgba(255, 255, 255, 0.2);
     font-weight: 600;
-    border-left: 4px solid var(--priority-medium);
+    font-size: 0.95rem;
+    transition: background-color var(--transition-fast);
+    box-shadow: var(--shadow-sm);
 }
 
-.empty-state {
-    text-align: center;
-    color: #a1a1aa;
-    padding: 4rem 2rem;
-    font-size: 1.1rem;
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    padding: 0.75rem 1.5rem;
     background-color: transparent;
-    border-radius: 8px;
-    border: 2px dashed #d4d4d8;
-    margin-top: 1rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
 }
 
-.high-color {
-    border-left-color: var(--priority-high);
+.btn-secondary:hover {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--text-muted);
 }
 
-.medium-color {
-    border-left-color: var(--priority-medium);
-}
-
-.low-color {
-    border-left-color: var(--priority-low);
+/* Utility margins */
+.m-t-1 {
+    margin-top: 0.5rem;
 }

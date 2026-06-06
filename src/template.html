@@ -10,65 +10,163 @@
 <body>
     <div id="app-container">
         <aside id="sidebar">
-            <h2>Projects</h2>
-            <div id="project-list"></div>
+            <div class="sidebar-brand">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <h1>TaskFlow</h1>
+            </div>
+            
+            <div class="sidebar-section">
+                <h2>Projects</h2>
+                <div id="project-list"></div>
+            </div>
+
             <form id="add-project-form">
                 <input type="text" id="new-project-name" placeholder="New Project..." required>
-                <button type="submit">+ Add</button>
+                <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    Add Project
+                </button>
             </form>
         </aside>
 
         <main id="main-content">
-            <h2>Todos</h2>
+            <div class="main-header">
+                <h2>My Tasks</h2>
+            </div>
 
-            <form action="" id="add-todo-form">
-                <input type="text" name="title" id="" placeholder="Title" required>
-                <input type="text" name="description" placeholder="Description">
-                <input type="date" name="dueDate">
-                <label for="priority">Choose Priority: </label>
-                <select type="tel" name="priority" placeholder="Priority" id="priority">
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                </select>
-                <input type="text" name="notes" placeholder="Notes">
-                <input type="text" name="checklist" placeholder="Checklist">
-                <input type="checkbox" name="isCompleted" value="true">
-                <button type="submit" id="add-todo-form-submit-btn">Add Todo</button>
-            </form>
+            <div class="add-todo-section">
+                <form id="add-todo-form">
+                    <div class="form-grid">
+                        <div class="form-group col-span-2">
+                            <label for="todo-title">Task Title</label>
+                            <input type="text" name="title" id="todo-title" placeholder="What needs to be done?" required>
+                        </div>
+                        
+                        <div class="form-group col-span-2">
+                            <label for="todo-desc">Description</label>
+                            <input type="text" name="description" id="todo-desc" placeholder="Add details or notes...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="todo-date">Due Date</label>
+                            <input type="date" name="dueDate" id="todo-date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="priority">Priority</label>
+                            <select name="priority" id="priority">
+                                <option value="low">Low Priority</option>
+                                <option value="medium" selected>Medium Priority</option>
+                                <option value="high">High Priority</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="todo-notes">Quick Notes</label>
+                            <input type="text" name="notes" id="todo-notes" placeholder="e.g. room number, links...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="todo-checklist">Checklist Item</label>
+                            <input type="text" name="checklist" id="todo-checklist" placeholder="e.g. bring keys, buy item...">
+                        </div>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <label class="toggle-container">
+                            <input type="checkbox" name="isCompleted" value="true">
+                            <span class="toggle-label">Mark completed instantly</span>
+                        </label>
+                        <button type="submit" id="add-todo-form-submit-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            Add Task
+                        </button>
+                    </div>
+                </form>
+            </div>
 
             <div id="todo-list"></div>
         </main>
     </div>
 
+    <!-- Edit Todo Modal -->
     <div id="edit-todo-modal" class="hide-edit-modal">
-        <form action="" id="edit-todo-form">
-            <input type="text" name="title" id="edit-title-in" placeholder="Title" required>
-            <input type="text" name="description" id="edit-description-in" placeholder="Description">
-            <input type="date" name="dueDate" id="edit-dueDate-in">
-            <label for="priority">Choose Priority: </label>
-            <select type="tel" name="priority" placeholder="Priority" id="edit-priority-in">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>
-            <input type="text" name="notes" id="edit-notes-in" placeholder="Notes">
-            <input type="text" name="checklist" id="edit-checklist-in" placeholder="Checklist">
-            <label for="edit-isComplete-in">Is Complete</label>
-            <input type="checkbox" name="isCompleted" id="edit-isComplete-in" value="true">
-            <button type="submit">Save Changes</button>
-            <button type="button" id="close-edit-modal">Cancel</button>
-        </form>
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button type="button" id="close-edit-modal" class="modal-close-x">&times;</button>
+            </div>
+            <form id="edit-todo-form">
+                <div class="modal-form-grid">
+                    <div class="form-group">
+                        <label for="edit-title-in">Title</label>
+                        <input type="text" name="title" id="edit-title-in" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-description-in">Description</label>
+                        <input type="text" name="description" id="edit-description-in">
+                    </div>
+                    
+                    <div class="form-group-half">
+                        <div class="form-group">
+                            <label for="edit-dueDate-in">Due Date</label>
+                            <input type="date" name="dueDate" id="edit-dueDate-in">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-priority-in">Priority</label>
+                            <select name="priority" id="edit-priority-in">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-notes-in">Notes</label>
+                        <input type="text" name="notes" id="edit-notes-in">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-checklist-in">Checklist</label>
+                        <input type="text" name="checklist" id="edit-checklist-in">
+                    </div>
 
+                    <label class="toggle-container m-t-1">
+                        <input type="checkbox" name="isCompleted" id="edit-isComplete-in" value="true">
+                        <span class="toggle-label">Is Completed</span>
+                    </label>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="close-edit-modal-btn-fallback">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <!-- Edit Project Modal -->
     <div id="edit-project-modal" class="hide-edit-modal">
-        <form id="edit-project-form">
-            <input type="text" id="edit-project-name-in" name="projectName" required>
-            <button type="submit">Save Name</button>
-            <button type="button" id="close-edit-project-modal">Cancel</button>
-        </form>
+        <div class="modal-card max-w-sm">
+            <div class="modal-header">
+                <h3>Rename Project</h3>
+                <button type="button" id="close-edit-project-modal" class="modal-close-x">&times;</button>
+            </div>
+            <form id="edit-project-form">
+                <div class="form-group">
+                    <label for="edit-project-name-in">Project Name</label>
+                    <input type="text" id="edit-project-name-in" name="projectName" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="close-edit-project-modal-btn-fallback">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Name</button>
+                </div>
+            </form>
+        </div>
     </div>
-
 </body>
 
 </html>

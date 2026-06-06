@@ -8,6 +8,7 @@ const addTodoForm = document.querySelector('#add-todo-form');
 const addTodoFormSubmitButton = document.querySelector("#add-todo-form-submit-btn");
 const editModal = document.querySelector("#edit-todo-modal");
 const closeEditModalBtn = document.querySelector("#close-edit-modal");
+const closeEditModalBtnFallback = document.querySelector("#close-edit-modal-btn-fallback");
 const editForm = document.querySelector("#edit-todo-form");
 const addProjectForm = document.querySelector("#add-project-form");
 const editTitleIn = document.querySelector("#edit-title-in");
@@ -21,9 +22,10 @@ const editProjectModal = document.querySelector("#edit-project-modal");
 const editProjectForm = document.querySelector("#edit-project-form");
 const editProjectNameIn = document.querySelector("#edit-project-name-in");
 const closeEditProjectModalBtn = document.querySelector("#close-edit-project-modal");
+const closeEditProjectModalBtnFallback = document.querySelector("#close-edit-project-modal-btn-fallback");
 
-
-closeEditModalBtn.addEventListener("click", closeEditModal);
+if (closeEditModalBtn) closeEditModalBtn.addEventListener("click", closeEditModal);
+if (closeEditModalBtnFallback) closeEditModalBtnFallback.addEventListener("click", closeEditModal);
 
 function renderProjects(arrayOfProjects, activeProjectId) {
     projectListContainer.innerHTML = "";
@@ -84,15 +86,18 @@ function renderTodos(arrayOfTodos) {
         todoCardTitle.textContent = todo.title;
         todoCardTitle.classList.add("todo-card-title");
 
-        const todoCardDueDate = document.createElement("div");
+        const rightSideControls = document.createElement('div');
+        rightSideControls.classList.add("todo-card-controls");
+
         if (todo.dueDate) {
+            const todoCardDueDate = document.createElement("div");
             const dateObj = new Date(todo.dueDate);
             let dateText = "";
 
             if(isToday(dateObj)) {
                 dateText = "Today";
                 todoCardDueDate.style.color = "var(--priority-high)";
-                todoCardDueDate.style.fontWeight = "bold";
+                todoCardDueDate.style.fontWeight = "600";
             }
             else if(isTomorrow(dateObj)) {
                 dateText = "Tomorrow";
@@ -103,9 +108,11 @@ function renderTodos(arrayOfTodos) {
             else {
                 dateText = format(dateObj, "do MMM yyyy");
             }
-            todoCardDueDate.textContent = dateText;
+            todoCardDueDate.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="flex-shrink:0; margin-right:4px;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg><span>${dateText}</span>`;
+            todoCardDueDate.classList.add("todo-card-duedate");
+            rightSideControls.appendChild(todoCardDueDate);
         }
-        todoCardDueDate.classList.add("todo-card-duedate");
+        
         todoCard.classList.add(`${todo.priority}-color`);
 
         const todoEditBtn = document.createElement("button");
@@ -116,10 +123,6 @@ function renderTodos(arrayOfTodos) {
         todoDeleteBtn.classList.add("todo-delete-btn");
         todoDeleteBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete-outline</title><path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" /></svg>`;
 
-        const rightSideControls = document.createElement('div');
-        rightSideControls.classList.add("todo-card-controls");
-
-        rightSideControls.appendChild(todoCardDueDate);
         rightSideControls.appendChild(todoEditBtn);
         rightSideControls.appendChild(todoDeleteBtn);
         todoCard.appendChild(todoCardTitle);
@@ -242,10 +245,12 @@ function openEditProjectModal(projectId, currentName) {
     editProjectModal.classList.add("active-edit-modal");
 }
 
-closeEditProjectModalBtn.addEventListener("click", (event) => {
+const closeProjectModalFunc = () => {
     editProjectModal.classList.remove("active-edit-modal");
     editProjectModal.classList.add("hide-edit-modal");
-});
+};
+if (closeEditProjectModalBtn) closeEditProjectModalBtn.addEventListener("click", closeProjectModalFunc);
+if (closeEditProjectModalBtnFallback) closeEditProjectModalBtnFallback.addEventListener("click", closeProjectModalFunc);
 
 function bindEditProjectSubmit(handleEditProjectCallback) {
     editProjectForm.addEventListener("submit", (event) => {
