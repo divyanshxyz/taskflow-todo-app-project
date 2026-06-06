@@ -1,0 +1,14 @@
+/* For global colors, fonts, and spacing */
+
+:root {
+    /* Main Theme */
+    --bg-primary: #f4f4f5;
+    --bg-sidebar: #27272a;
+    --text-primary: #18181b;
+    --text-sidebar: #fafafa;
+
+    /* Priority Colors for Todo Cards */
+    --priority-high: #ef4444;
+    --priority-medium: #eab308;
+    --priority-low: #22c55e;
+}
